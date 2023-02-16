@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@rudderstack/rudder-integration-clevertap-react-native": "^1.0.5",
+    "@rudderstack/rudder-sdk-react-native": "^1.6.1",
     "react": "18.2.0",
     "react-native": "0.71.3"
   },

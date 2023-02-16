@@ -28,6 +28,7 @@ import {
 import {TEST_DATAPLANE_URL, TEST_WRITE_KEY} from '@env';
 
 import rc, {RUDDER_LOG_LEVEL} from '@rudderstack/rudder-sdk-react-native';
+import clevertap from '@rudderstack/rudder-integration-clevertap-react-native';
 
 const initialization = async () => {
   console.log(TEST_DATAPLANE_URL);
@@ -38,7 +39,7 @@ const initialization = async () => {
     autoCollectAdvertId: true,
     recordScreenViews: true,
     logLevel: RUDDER_LOG_LEVEL.VERBOSE,
-    withFactories: [],
+    withFactories: [clevertap],
   };
 
   await rc.setup(TEST_WRITE_KEY, config);
