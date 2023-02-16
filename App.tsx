@@ -25,6 +25,58 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {TEST_DATAPLANE_URL, TEST_WRITE_KEY} from '@env';
+
+import rc, {RUDDER_LOG_LEVEL} from '@rudderstack/rudder-sdk-react-native';
+
+const initialization = async () => {
+  console.log(TEST_DATAPLANE_URL);
+  console.log(TEST_WRITE_KEY);
+  const config = {
+    dataPlaneUrl: TEST_DATAPLANE_URL,
+    trackAppLifecycleEvents: true,
+    autoCollectAdvertId: true,
+    recordScreenViews: true,
+    logLevel: RUDDER_LOG_LEVEL.VERBOSE,
+    withFactories: [],
+  };
+
+  await rc.setup(TEST_WRITE_KEY, config);
+
+  const options = {
+    externalIds: [
+      {
+        id: '2d31d085-4d93-4126-b2b3-94e651810673',
+        type: 'brazeExternalId',
+      },
+    ],
+  };
+
+  const props = {
+    key1: 'value1',
+    key2: true,
+    key3: 123.45,
+    name: 'Miraj',
+  };
+
+  await rc.identify(
+    'sanityId_iOS',
+    {
+      email: 'sanityuseriOS@example.com',
+      location: 'UK',
+    },
+    options,
+  );
+  await rc.track('WOOOW Sanity iOS', props);
+  await rc.screen('WOOOW Sanity screen iOS', props);
+
+  await rc.track('WOOOW React Native event', props);
+  await rc.screen('WOOOW React Native screen', props);
+  // await rc.group("group ID");
+  // await rc.alias('test_userIdAndroid', "alias android newUserId");
+  // await rc.flush();
+};
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
