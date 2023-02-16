@@ -31,6 +31,8 @@ import {TEST_DATAPLANE_URL, TEST_WRITE_KEY} from '@env';
 import rc, {RUDDER_LOG_LEVEL} from '@rudderstack/rudder-sdk-react-native';
 
 const initialization = async () => {
+  console.log(TEST_DATAPLANE_URL);
+  console.log(TEST_WRITE_KEY);
   const config = {
     dataPlaneUrl: TEST_DATAPLANE_URL,
     trackAppLifecycleEvents: true,
