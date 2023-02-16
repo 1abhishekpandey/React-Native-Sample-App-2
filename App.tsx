@@ -7,6 +7,7 @@
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import { useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -109,6 +110,13 @@ function Section({children, title}: SectionProps): JSX.Element {
 }
 
 function App(): JSX.Element {
+  useEffect(() => {
+    const awaitInitialization = async () => {
+      initialization();
+    };
+
+    awaitInitialization().catch(console.error);
+  }, []);
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
